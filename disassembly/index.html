@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Disassembly - airbreak</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">airbreak</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guide <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li class="active">
+    <a href="./">Disassembly</a>
+</li>
+                                    
+<li >
+    <a href="../firmware/">Firmware</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Information <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Hardware</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../info/datasheets/">Datasheets</a>
+</li>
+            
+<li >
+    <a href="../info/pinouts/">Pinouts</a>
+</li>
+            
+<li >
+    <a href="../info/testpoints/">Useful Test Points</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Software</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../info/tcl/">OpenOCD Scripts</a>
+</li>
+            
+<li >
+    <a href="../info/windows/">Windows Setup Instructions</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Firmware</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../info/firmware-docs/">Documentation</a>
+</li>
+            
+<li >
+    <a href="../info/extensions/">Development</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="disabled">
+                                <a rel="next" >
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../firmware/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/osresearch/airbreak/"><i class="fa fa-github"></i> GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#disassembly">Disassembly</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#wiring">Wiring</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="disassembly">Disassembly</h1>
+<p><img alt="CPAP running custom firmware" src="../images/airsense-hacked.jpg" /></p>
+<p>In order to dump and replace the device firmware, we need to access the programming port. Unforunately it is inside the machine so it requires some disassembly to reach.</p>
+<h3 id="tools">Tools</h3>
+<p>You will need the following:</p>
+<ul>
+<li>Torx T15</li>
+<li><a href="https://www.digikey.com/product-detail/en/stmicroelectronics/ST-LINK-V2/497-10484-ND/2214535">ST-Link/V2 STM32 programmer</a> or clone</li>
+<li><a href="https://www.digikey.com/product-detail/en/TC2050-IDC/TC2050-IDC-ND/2605366">TC2050-IDC</a> or <a href="https://www.digikey.com/product-detail/en/tag-connect-llc/TC2050-IDC-NL/TC2050-IDC-NL-ND/2605367">TC2050-ICD-NL</a> programming adapter</li>
+<li>4 male-female 0.1" jumpers</li>
+<li>Computer with <a href="http://openocd.org/">OpenOCD</a> and some Unix familiarity</li>
+<li><code>arm-none-eabi-gcc</code> to compile extensions (not necessary to unlock the device)</li>
+</ul>
+<p>It is difficult but possible to solder directly to the PCB, which relaxes the requirement for the jumpers and programming adapter. For more information on this, see the <a href="../info/testpoints/">list of useful test points</a>.</p>
+<p><img alt="Torx T15 screws" src="../images/airsense-screws.jpg" /></p>
+<p>First you'll need a Torx T15 driver to remove unscrew the three faceplate screws.</p>
+<!-- ![Removing the side cover](images/airsense-sidecover.jpg) -->
+
+<p><img alt="Prying the bottom latches" src="../images/airsense-bottom.jpg" /></p>
+<p>The bottom latches need to be pried open with a flat head or a spudger.</p>
+<p><img alt="Removing the knob" src="../images/airsense-knob.jpg" /></p>
+<p>The knob needs to be pulled firmly straight away from the board to remove it, which will allow
+the gasket to be removed.  Be careful while popping it off the start button on the top of the device.
+It is not necessary to remove the circuit board from the device.</p>
+<h2 id="wiring">Wiring</h2>
+<p><img alt="Attaching the TC-2050 connector" src="../images/airsense-tc2050.jpg" /></p>
+<p><a href="https://www.digikey.com/product-detail/en/TC2050-IDC/TC2050-IDC-ND/2605366">TC2050-IDC</a>
+is useful for development since it has legs
+that attach to the board.  For higher throughput flashing the
+<a href="https://www.digikey.com/product-detail/en/tag-connect-llc/TC2050-IDC-NL/TC2050-IDC-NL-ND/2605367">TC2050-ICD-NL</a>
+is easier to hookup, but requires someone to hold it in place while the
+device is reflashed with custom firmware.  The pinout of this port is not
+the usual 10-pin ARM debug header; it combines the programming pins for
+the STM32 that is the main controller, the auxillary STM8, and the PMIC.</p>
+<p>Board footprint layout (you don't need this unless you're soldering to
+the board):</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Pin</th>
+<th>Pin</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STM32_VDD</code></td>
+<td>1 (square)</td>
+<td>2</td>
+<td><code>STM32_NRST</code></td>
+</tr>
+<tr>
+<td><code>STM32_SWDIO</code></td>
+<td>3</td>
+<td>4</td>
+<td><code>STM8_SWIM</code></td>
+</tr>
+<tr>
+<td><code>STM8_VDD</code></td>
+<td>5</td>
+<td>6</td>
+<td><code>PMIC_TDI</code></td>
+</tr>
+<tr>
+<td><code>STM32_SWCLK</code></td>
+<td>7</td>
+<td>8</td>
+<td><code>STM8_TLI</code></td>
+</tr>
+<tr>
+<td><code>GND</code></td>
+<td>9</td>
+<td>10</td>
+<td><code>PMIC_TDO</code></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Connecting the TC-2050 to the STlink2" src="../images/airsense-stlink.jpg" /></p>
+<p>The <a href="https://www.digikey.nl/product-detail/en/stmicroelectronics/ST-LINK-V2/497-10484-ND/2214535">ST-Link/V2 programming
+device</a>
+is used for flashing and debugging the code on the STM32.  It has a
+different pinout from the TC2050 cable, so it is necessary to use some
+male-female 0.1" jumpers to connect the four STM32 programming pins on the
+TC2050 to the STlink.</p>
+<p>TC2050 ribbon cable pinout:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Pin</th>
+<th>Pin</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>STM32_VDD</code></strong></td>
+<td>1 (red)</td>
+<td>3</td>
+<td><strong><code>STM32_SWDIO</code></strong></td>
+</tr>
+<tr>
+<td><code>STM8_VDD</code></td>
+<td>5</td>
+<td>7</td>
+<td><strong><code>STM32_SWCLK</code></strong></td>
+</tr>
+<tr>
+<td><strong><code>GND</code></strong></td>
+<td>9</td>
+<td>10</td>
+<td><code>PMIC_TDO</code></td>
+</tr>
+<tr>
+<td><code>STM8_TLI</code></td>
+<td>8</td>
+<td>6</td>
+<td><code>PMIC_TDI</code></td>
+</tr>
+<tr>
+<td><code>STM8_SWIM</code></td>
+<td>4</td>
+<td>2</td>
+<td><strong><code>STM32_NRST</code></strong></td>
+</tr>
+</tbody>
+</table>
+<p>STlink-V2 pinout:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Pin</th>
+<th>Pin</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>STM32_VDD</code></strong></td>
+<td>1</td>
+<td>2</td>
+<td>NC</td>
+</tr>
+<tr>
+<td>NC</td>
+<td>3</td>
+<td>4</td>
+<td>NC</td>
+</tr>
+<tr>
+<td>NC</td>
+<td>5</td>
+<td>6</td>
+<td>NC</td>
+</tr>
+<tr>
+<td><strong><code>STM32_SWDIO</code></strong></td>
+<td>7</td>
+<td>8</td>
+<td>NC</td>
+</tr>
+<tr>
+<td><strong><code>STM32_SWCLK</code></strong></td>
+<td>9</td>
+<td>10</td>
+<td>NC</td>
+</tr>
+<tr>
+<td>NC</td>
+<td>11</td>
+<td>12</td>
+<td>NC</td>
+</tr>
+<tr>
+<td>NC</td>
+<td>13</td>
+<td>14</td>
+<td>NC</td>
+</tr>
+<tr>
+<td><strong><code>STM32_NRST</code></strong></td>
+<td>15</td>
+<td>16</td>
+<td>NC</td>
+</tr>
+<tr>
+<td>NC</td>
+<td>17</td>
+<td>18</td>
+<td>NC</td>
+</tr>
+<tr>
+<td>NC</td>
+<td>19</td>
+<td>20</td>
+<td><strong><code>GND</code></strong></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A genuine ST-Link programmer uses the STM32_VDD pin to detect the target voltage, not to provide power. Connecting a generic programmer or a Raspberry Pi with this pin configuration will cause the programmer to be back-powered through the AirSense PCB.</p>
+<p><strong>If you are using a SWD programmer other than the ST-Link, do not hook up STM32_VDD to your 3.3V pin or you may risk damaging your board, programmer, or both!</strong></p>
+</div>
+<p>Okay, now you're ready to <a href="../firmware/">flash the firmware!</a></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
