@@ -143,41 +143,43 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#airbreak-jailbreak-your-cpap-device">Airbreak: jailbreak your CPAP device</a></li>
+        <li class="main active"><a href="#airbreak-jailbreaking-cpap-devices">Airbreak: jailbreaking CPAP devices</a></li>
             <li><a href="#disclaimer">Disclaimer</a></li>
-            <li><a href="#major-features">Major features:</a></li>
-            <li><a href="#features-under-development">Features under development:</a></li>
+            <li><a href="#major-features">Major features</a></li>
+            <li><a href="#development-features">Development features</a></li>
         <li class="main "><a href="#faq">FAQ</a></li>
             <li><a href="#whats-the-difference-between-the-cpap-and-bipap-machines">What's the difference between the CPAP and BiPAP machines?</a></li>
-            <li><a href="#can-this-be-used-to-treat-covid-patients">Can this be used to treat COVID patients?</a></li>
-            <li><a href="#could-this-sort-of-hack-alleviate-the-shortage-of-ventilators">Could this sort of hack alleviate the shortage of ventilators?</a></li>
-            <li><a href="#could-this-go-through-fda-approval">Could this go through FDA approval?</a></li>
+            <li><a href="#can-jailbroken-cpap-devices-be-used-to-treat-covid-patients">Can jailbroken CPAP devices be used to treat COVID patients?</a></li>
+            <li><a href="#could-hacked-machines-alleviate-the-shortage-of-ventilators">Could hacked machines alleviate the shortage of ventilators?</a></li>
+            <li><a href="#could-homebrew-firmware-go-through-fda-approval">Could homebrew firmware go through FDA approval?</a></li>
             <li><a href="#so-whats-the-point">So what's the point?</a></li>
-        <li class="main "><a href="#evaluation">Evaluation</a></li>
+        <li class="main "><a href="#clincal-evaluation">Clincal Evaluation</a></li>
         <li class="main "><a href="#more-details">More details</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
 <p><img alt="CPAP running custom firmware" src="images/ventilator-animated.gif" /></p>
-<h1 id="airbreak-jailbreak-your-cpap-device">Airbreak: jailbreak your CPAP device</h1>
+<h1 id="airbreak-jailbreaking-cpap-devices">Airbreak: jailbreaking CPAP devices</h1>
 <p>In light of the COVID-19 crisis and resultant
-shortage of medical equipment, <a href="https://health.mountsinai.org/blog/mount-sinai-turns-hundreds-of-machines-for-sleep-apnea-into-hospital-ventilators-shares-instructions-worldwide/">hospitals have been
+shortage of medical equipment, <a href="https://health.mountsinai.org/blog/mount-sinai-turns-hundreds-of-machines-for-sleep-apnea-into-hospital-ventilators-shares-instructions-worldwide/">hospitals have developed protocols for
 using BiPAP (BIlevel Positive Airway Pressure) machines as non-invasive
 ventilators</a>,
+the <a href="https://www.fda.gov/media/136702/download">FDA has approved the use of these modified BiPAP devices as ventilators</a>,
 and <a href="https://github.com/PubInv/covid19-vent-list">several groups</a>
-are currently working on ventilator designs that involve a converted
-BiPAP.  CPAP devices are cheaper, more widely available, and similar
-both electrically and mechanically.  However, they are lacking in some
-features that the physicians require and, according to their manufacturer,
-CPAP machines "<a href="https://www.resmed.com/en-us/covid-19/"><em>would require significant rework in order to function
-as a ventilator</em></a>".</p>
-<p>What we have done it to "<em>jailbreak</em>" the the Airsense 10 CPAP (Constant
-Positive Airway Pressure) machine, a common, low-cost sleep therapy device
+are currently working on ventilator designs that involve a
+converted BiPAP.  However, CPAP (Constant Positive Airway Pressure) devices
+are cheaper, more widely available, and similar both electrically
+and mechanically.  Unfortunately, they are lacking in some features that
+the physicians require and, according to their manufacturer, CPAP
+machines "<a href="https://www.resmed.com/en-us/covid-19/"><em>would require significant rework in order to function as
+a ventilator</em></a>".</p>
+<p>What we have done it to "<em>jailbreak</em>" the the Airsense 10 CPAP
+machine, a common, low-cost sleep therapy device
 intended to treat sleep apnea, so that it is possible to run additional
-tasks on the device to add the features necessary to use the device as
-a temporary ventilator.  This can help ease the shortage until more real
-ventilators are available.</p>
+tasks on the device. These new tasks add the features and adjust the range of
+parameters that make it possible to use the device as a temporary ventilator.
+This can help ease the shortage until more real ventilators are available.</p>
 <p>Our changes bring the Airsense S10 to near feature parity with BiPAP
 machines from the same manufacturer, boost the maximum pressure output
 available, and provide a starting point to add more advanced emergency
@@ -185,22 +187,21 @@ ventilator functionality.</p>
 <h2 id="disclaimer">Disclaimer</h2>
 <p>While we are consulting with doctors to validate that the modified
 firmware works as intended, the codebase in its current form should
-be considered a <strong>proof of concept</strong> and is <strong>not intended for use in a
-life-support capacity</strong>.  Please see the <a href="#faq">FAQ</a> for more information.</p>
-<p>No IP belonging to the device manufacturer is hosted in this repository,
+be considered a <strong>proof of concept</strong> and is
+<strong>not intended for use in a life-support capacity</strong>.
+Please see the <a href="#faq">FAQ</a> for more information.</p>
+<p>No IP belonging to device manufacturers is hosted in this repository,
 nor will it be accepted as a pull request.</p>
-<h2 id="major-features">Major features:</h2>
+<h2 id="major-features">Major features</h2>
 <ul>
-<li>Adds a timed breathing mode that oscillates between high and low pressure (stock firmware is only a single pressure)</li>
-<li>Allows maximum pressure to be increased to 30 cm H2O (stock firmware is 20cm H2O)</li>
-<li>Allows very smooth rapid pressure change rates (stock firmware ramps 1 cm/sec)</li>
+<li>Adds a timed breathing mode that oscillates between high and low pressure (stock firmware supports only a single pressure)</li>
+<li>Allows maximum pressure to be increased to 30 cm H<sub>2</sub>O (stock firmware is 20cm H<sub>2</sub>O)</li>
+<li>Allows smooth rapid pressure change rates (stock firmware changes pressure at less than 1 cm/sec)</li>
 <li>Unlocks all of the vendor modes and tunable configuration parameters</li>
-<li>Access to all of the sensors (flow, pressure, temperature, etc)</li>
-<li>Reads tuning parameters from a memory location accessible over SWD</li>
-<li>Real-time data export over SWD</li>
-<li>Real-time graphs on the screen to show an immediate history of data</li>
+<li>Provides access to all of the sensors (flow, pressure, temperature, etc)</li>
+<li>Displays real-time graphs on the screen to show an immediate history of sensor data</li>
 </ul>
-<h2 id="features-under-development">Features under development:</h2>
+<h2 id="development-features">Development features</h2>
 <ul>
 <li>Closed loop air pressure control with backup respiration rates ("VAPS" mode)</li>
 <li>Visual and audible alarms when flow stoppage or leakage rates are detected</li>
@@ -214,8 +215,8 @@ The BiPAP machines can produce two levels of pressure, which allows them to
 be used a temporary ventilators.  Adding a function to the existing firmware
 that alternate between pressures allows the CPAP to effectively function
 similar to a BiPAP system.</p>
-<h2 id="can-this-be-used-to-treat-covid-patients">Can this be used to treat COVID patients?</h2>
-<p>We want to be very clear here: this modified firmware should not be
+<h2 id="can-jailbroken-cpap-devices-be-used-to-treat-covid-patients">Can jailbroken CPAP devices be used to treat COVID patients?</h2>
+<p>We want to be very clear here: this modified firmware should <strong>not</strong> be
 flashed on CPAP machines and used to treat COVID patients immediately.
 The firmware that we've developed is an effective demonstration of
 the capability, and while it has been reviewed and validated by expert
@@ -223,21 +224,22 @@ researchers, biomedical engineers, and clinical pulmonologists, it has
 not yet been put through FDA approval.  Additionally, the
 <a href="https://health.mountsinai.org/wp-content/uploads/sites/14/2020/04/NIV-to-Ventilator-Modification-Protocol-v1.02-for-posting.pdf">Mt Sinai's protocols for off-label non-invasive ventilation</a>
 require additional modifications such as viral filter and remote control
-before the machines are ready for clinical use.</p>
-<h2 id="could-this-sort-of-hack-alleviate-the-shortage-of-ventilators">Could this sort of hack alleviate the shortage of ventilators?</h2>
+before the machines would be ready for clinical use.</p>
+<h2 id="could-hacked-machines-alleviate-the-shortage-of-ventilators">Could hacked machines alleviate the shortage of ventilators?</h2>
 <p>If the manufacturers developed their own firmware updates, or the FDA
-approves the jailbroken ones, this could have an extremely large role
+approves our jailbroken firmware, this could have an extremely large role
 in bridging the ventilator shortage gap.
 There are millions of unused or underutilized CPAP and BiPAP devices sitting in
 closets in America, and roughly another 500,000 units in warehouses in
 the country.  These devices can be used as an alternate ventilator, for
 low-resource hospitals who are still waiting for the hospital ventilators
 to arrive.</p>
-<h2 id="could-this-go-through-fda-approval">Could this go through FDA approval?</h2>
-<p>If there were no other option it could, but we believe that the best
-route for rolling out these upgrades is to work with the manufacturers
-to use their resources to validate and distribute these upgrades safely
-and at scale.  There are three main factors at play here:</p>
+<h2 id="could-homebrew-firmware-go-through-fda-approval">Could homebrew firmware go through FDA approval?</h2>
+<p>If there were no other option, our firmware could go through FDA approval,
+but we believe that the best route for rolling out these upgrades is
+to work with the manufacturers to use their resources to validate and
+distribute these upgrades safely and at scale.  There are three main
+factors at play here:</p>
 <ul>
 <li>
 <p>The first is a regulatory/safety one:  Under the recently-released
@@ -248,16 +250,17 @@ without requiring explicit FDA approval -- they are in the best position
 from a technical, expertise, safety and regulatory perspective.</p>
 </li>
 <li>
-<p>The second is a practical one:  There are lots of different models of
+<p>The second is a practical one:  There are many different models of
 CPAP and BiPAP devices, and reverse-engineering is a slow and painful
-process. We modified the most common model of CPAP in America, but to
-get lots of ventilators quickly, you'd need a firmware modification for
-every mode of CPAP. What we've found in our work is that the work needed
+process. We modified the firmware on the most common model of CPAP in
+America in about a week, but to get lots of ventilators quickly, you'd
+need a firmware modification for every mode of CPAP.
+What we've found in our work is that the work needed
 for the manufacturer to implement these upgrades is pretty minimal --
 the manufacturer has access to the source code, to the schematics,
 and to the engineers who are intimately familiar with physiology and
 safety standards.  We've found that, in many cases, the bulk of the
-work is already done and through FDA, like the iVAPS menu that
+work has already gone through FDA approval, like the iVAPS menu that
 is in the firmware on the ResMed Airsense device.  Even if other
 manufacturers had not written a line of code for their CPAP models, the
 simple pressure-control ventilator mode that we were able to implement
@@ -293,23 +296,30 @@ then they could use them to clinically ventilate COVID patients in an ICU.</p>
 FDA approval under the Emergency Use Authorization if the manufacturers
 absolutely refused to cooperate, but the safest and best path is for
 the manufacturers to enable this upgrade on their own.</p>
-<p>Device owners can also use these tools to write their own <a href="info/extensions">extensions to customize
-their devices for their needs</a>, similar to <a href="https://magiclantern.fm">Magic Lantern</a>
-for cameras, as well as the better understand their own therapy by gaining
+<p>Separately from the very pressing COVID issues, this sort of tool allows
+device owners to write their own <a href="info/extensions">extensions to customize
+their devices for their needs</a>, similar to what
+the <a href="https://magiclantern.fm">Magic Lantern</a> firmware does for cameras.
+Additionally, these tools allow the owners and users to gain
+a better understand their own therapy by gaining
 access to the sensors on the device.  They can add features like the on-screen
 graphs shown above, or integrate external systems through the expansion port.</p>
-<h1 id="evaluation">Evaluation</h1>
+<h1 id="clincal-evaluation">Clincal Evaluation</h1>
 <p><img alt="PV curves" src="images/pv.png" /></p>
 <p>To be written.  Currently the modified firmware is being evaluated by
 research labs and pulmnologists.  There are other pieces necessary to
-use the devices in a clinical setting, such as filter traps, O2 inputs,
-alarms, etc.</p>
-<p><a href="https://health.mountsinai.org/wp-content/uploads/sites/14/2020/04/NIV-to-Ventilator-Modification-Protocol-v1.02-for-posting.pdf">Mt Sinai's BiPAP protocols for non-invasive ventilation</a>
-provide a roadmap for how these modified CPAP devices could be used.</p>
+use the devices in a clinical setting, such as virus filters, O2 inputs,
+remote access consoles, alarms, etc.</p>
+<!--
+[Mt Sinai's BiPAP protocols for non-invasive ventilation](https://health.mountsinai.org/wp-content/uploads/sites/14/2020/04/NIV-to-Ventilator-Modification-Protocol-v1.02-for-posting.pdf)
+provide a roadmap for how these modified CPAP devices could be used.
+-->
+
 <h1 id="more-details">More details</h1>
 <ul>
 <li><a href="/disassembly">Installation guide</a></li>
 <li><a href="info/extensions">Writing extensions</a></li>
+<li><a href="https://github.com/osresearch/airbreak">github.com/osresearch/airbreak</a></li>
 <li><a href="mailto://info@airbreak.dev">info@airbreak.dev</a></li>
 </ul></div>
         </div>
