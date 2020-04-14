@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
 <meta property="og:title" content="airbreak: jailbreak your CPAP devices">
 <meta property="og:description" content="Tools to turn your CPAP machine into an emergency ventilator">
 <meta property="og:url" content="https://airbreak.dev/">
@@ -58,6 +66,10 @@
                                     
 <li >
     <a href="firmware/">Firmware</a>
+</li>
+                                    
+<li >
+    <a href="evaluation/">Evaluation</a>
 </li>
                                 </ul>
                             </li>
@@ -151,7 +163,6 @@
             <li><a href="#could-hacked-machines-alleviate-the-shortage-of-ventilators">Could hacked machines alleviate the shortage of ventilators?</a></li>
             <li><a href="#could-homebrew-firmware-go-through-fda-approval">Could homebrew firmware go through FDA approval?</a></li>
             <li><a href="#so-whats-the-point">So what's the point?</a></li>
-        <li class="main "><a href="#clincal-evaluation">Clincal Evaluation</a></li>
         <li class="main "><a href="#more-details">More details</a></li>
     </ul>
 </div></div>
@@ -192,8 +203,8 @@ Please see the <a href="#faq">FAQ</a> for more information.</p>
 nor will it be accepted as a pull request.</p>
 <h2 id="major-features">Major features</h2>
 <ul>
-<li>Adds a timed breathing mode that oscillates between high and low pressure (stock firmware supports only a single pressure)</li>
-<li>Allows maximum pressure to be increased to 30 cm H<sub>2</sub>O (stock firmware is 20cm H<sub>2</sub>O)</li>
+<li>Adds a Pressure Control Ventilator (PCV) mode that oscillates between high and low pressure at a configurable breathing rate (stock firmware supports only a single pressure, with no breath rate control)</li>
+<li>Allows maximum pressure to be increased to 30 cm H<sub>2</sub>O, as required by clinical protocols (stock firmware is 20cm H<sub>2</sub>O)</li>
 <li>Allows smooth rapid pressure change rates (stock firmware changes pressure at less than 1 cm/sec)</li>
 <li>Unlocks all of the vendor modes and tunable configuration parameters</li>
 <li>Provides access to all of the sensors (flow, pressure, temperature, etc)</li>
@@ -218,8 +229,8 @@ similar to a BiPAP system.</p>
 <p>We want to be very clear here: this modified firmware should <strong>not</strong> be
 flashed on CPAP machines and used to treat COVID patients immediately.
 The firmware that we've developed is an effective demonstration of
-the capability, and while it has been reviewed and validated by expert
-researchers, biomedical engineers, and clinical pulmonologists, it has
+the capability, and while it has been <a href="evaluation">reviewed and validated by expert
+researchers, biomedical engineers, and clinical pulmonologists</a>, it has
 not yet been put through FDA approval.  Additionally, the
 <a href="https://health.mountsinai.org/wp-content/uploads/sites/14/2020/04/NIV-to-Ventilator-Modification-Protocol-v1.02-for-posting.pdf">Mt Sinai's protocols for off-label non-invasive ventilation</a>
 require additional modifications such as viral filter and remote control
@@ -303,19 +314,9 @@ Additionally, these tools allow the owners and users to gain
 a better understand their own therapy by gaining
 access to the sensors on the device.  They can add features like the on-screen
 graphs shown above, or integrate external systems through the expansion port.</p>
-<h1 id="clincal-evaluation">Clincal Evaluation</h1>
-<p><img alt="PV curves" src="images/pv.png" /></p>
-<p>To be written.  Currently the modified firmware is being evaluated by
-research labs and pulmnologists.  There are other pieces necessary to
-use the devices in a clinical setting, such as virus filters, O2 inputs,
-remote access consoles, alarms, etc.</p>
-<!--
-[Mt Sinai's BiPAP protocols for non-invasive ventilation](https://health.mountsinai.org/wp-content/uploads/sites/14/2020/04/NIV-to-Ventilator-Modification-Protocol-v1.02-for-posting.pdf)
-provide a roadmap for how these modified CPAP devices could be used.
--->
-
 <h1 id="more-details">More details</h1>
 <ul>
+<li><a href="evaluation">Clinical evaluation</a></li>
 <li><a href="/disassembly">Installation guide</a></li>
 <li><a href="info/extensions">Writing extensions</a></li>
 <li><a href="https://github.com/osresearch/airbreak">github.com/osresearch/airbreak</a></li>

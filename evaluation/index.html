@@ -8,16 +8,16 @@
         
         
         
-        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <link rel="shortcut icon" href="../img/favicon.ico">
 <meta property="og:title" content="airbreak: jailbreak your CPAP devices">
 <meta property="og:description" content="Tools to turn your CPAP machine into an emergency ventilator">
 <meta property="og:url" content="https://airbreak.dev/">
 <meta property="og:image" content="https://airbreak.dev/images/sprintf.jpg">
 
-        <title>Windows Setup Instructions - airbreak</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
+        <title>Evaluation - airbreak</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -25,8 +25,8 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
@@ -45,35 +45,35 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="../..">airbreak</a>
+                    <a class="navbar-brand" href="..">airbreak</a>
                 </div>
 
                 <!-- Expanded navigation -->
                 <div class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guide <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="../..">About</a>
+    <a href="..">About</a>
 </li>
                                     
 <li >
-    <a href="../../disassembly/">Disassembly</a>
+    <a href="../disassembly/">Disassembly</a>
 </li>
                                     
 <li >
-    <a href="../../firmware/">Firmware</a>
+    <a href="../firmware/">Firmware</a>
 </li>
                                     
-<li >
-    <a href="../../evaluation/">Evaluation</a>
+<li class="active">
+    <a href="./">Evaluation</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Information <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -82,15 +82,15 @@
     <ul class="dropdown-menu">
             
 <li >
-    <a href="../datasheets/">Datasheets</a>
+    <a href="../info/datasheets/">Datasheets</a>
 </li>
             
 <li >
-    <a href="../pinouts/">Pinouts</a>
+    <a href="../info/pinouts/">Pinouts</a>
 </li>
             
 <li >
-    <a href="../testpoints/">Useful Test Points</a>
+    <a href="../info/testpoints/">Useful Test Points</a>
 </li>
     </ul>
   </li>
@@ -100,11 +100,11 @@
     <ul class="dropdown-menu">
             
 <li >
-    <a href="../tcl/">OpenOCD Scripts</a>
+    <a href="../info/tcl/">OpenOCD Scripts</a>
 </li>
             
-<li class="active">
-    <a href="./">Windows Setup Instructions</a>
+<li >
+    <a href="../info/windows/">Windows Setup Instructions</a>
 </li>
     </ul>
   </li>
@@ -114,11 +114,11 @@
     <ul class="dropdown-menu">
             
 <li >
-    <a href="../firmware-docs/">Documentation</a>
+    <a href="../info/firmware-docs/">Documentation</a>
 </li>
             
 <li >
-    <a href="../extensions/">Development</a>
+    <a href="../info/extensions/">Development</a>
 </li>
     </ul>
   </li>
@@ -133,12 +133,12 @@
                             </a>
                         </li>
                             <li >
-                                <a rel="next" href="../tcl/">
+                                <a rel="next" href="../firmware/">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li >
-                                <a rel="prev" href="../firmware-docs/">
+                                <a rel="prev" href="../info/datasheets/">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -153,20 +153,22 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#using-openocd-with-windows">Using OpenOCD with Windows</a></li>
-            <li><a href="#install-git-bash">Install Git Bash</a></li>
-            <li><a href="#set-up-path-to-scripts-directory">Set up path to scripts directory</a></li>
-            <li><a href="#enable-telnet">Enable telnet</a></li>
-            <li><a href="#disable-tcl-server">Disable TCL server</a></li>
+        <li class="main active"><a href="#clincal-evaluation">Clincal Evaluation</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="using-openocd-with-windows">Using OpenOCD with Windows</h1>
-<h2 id="install-git-bash">Install Git Bash</h2>
-<h2 id="set-up-path-to-scripts-directory">Set up path to scripts directory</h2>
-<h2 id="enable-telnet">Enable telnet</h2>
-<h2 id="disable-tcl-server">Disable TCL server</h2></div>
+<p><img alt="CPAP running custom firmware" src="../images/ventilator-animated.gif" /></p>
+<h1 id="clincal-evaluation">Clincal Evaluation</h1>
+<p><img alt="PV curves" src="../images/pv.png" /></p>
+<p>To be written.  Currently the modified firmware is being evaluated by
+research labs and pulmnologists.  There are other pieces necessary to
+use the devices in a clinical setting, such as virus filters, O2 inputs,
+remote access consoles, alarms, etc.</p>
+<p><a href="https://health.mountsinai.org/wp-content/uploads/sites/14/2020/04/NIV-to-Ventilator-Modification-Protocol-v1.02-for-posting.pdf">Mt Sinai's BiPAP protocols for non-invasive ventilation</a>
+provide a roadmap for how these modified CPAP devices could be used.</p>
+<p>The UK's <a href="https://docs.google.com/spreadsheets/d/17EJ9TN6O1wqP4c-lIn5hbmuMRrto7M_KXHf17zjNSLk/edit#gid=704151435">Rapidly Manufactured Ventilator Standards</a>
+have criteria that should be met before this sort of modification can be deployed.</p></div>
         </div>
 
         <footer class="col-md-12">
@@ -174,11 +176,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = "../..",
+            var base_url = "..",
                 shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
