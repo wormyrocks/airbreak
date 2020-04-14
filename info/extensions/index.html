@@ -173,7 +173,10 @@ source emwin, although <a href="https://www.nxp.com/docs/en/user-guide/UM03001_e
 available</a>
 and can be used to derive the headers and structures required to interface
 with the library.</p>
-<p>GPIO library is the STM32 Standard Peripheral Library.</p></div>
+<p>GPIO library is the STM32 Standard Peripheral Library.</p>
+<p>There is a hard-float unit in the CPU, but some float/double ops seem
+to cause a fault.  Be sure that all of your constants have an explicit
+float type like <code>0.1f</code>, otherwise gcc will use doubles.</p></div>
         </div>
 
         <footer class="col-md-12">
