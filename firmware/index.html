@@ -19,7 +19,7 @@
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -168,12 +168,18 @@
 <h3 id="connecting-to-device">Connecting to Device</h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you are using Windows, the steps in this section will be slightly different. Please see the <a href="../info/windows/">Windows guide</a> for more information.</p>
+<p>If you are using Windows, the steps in this section
+will be slightly different. Please see the <a href="../info/windows/">Windows
+guide</a> for more information.</p>
 </div>
-<p>We are going to use the open-source OpenOCD debug interface to access the device.  </p>
-<p>First, make sure <a href="https://github.com/osresearch/airbreak">this repository</a> is cloned and set to your current working directory.</p>
-<p>Make sure your programmer is <a href="/disassembly/#wiring">attached to the PCB</a>, then start OpenOCD.</p>
-<pre><code class="sh">sudo openocd -f interface/stlink.cfg -c 'tcl/airsense.cfg'
+<p>We are going to use the open-source <a href="http://openocd.org">OpenOCD</a> debug
+interface to access the device.</p>
+<p>First, make sure <a href="https://github.com/osresearch/airbreak">this repository</a>
+is cloned and set to your current working directory.</p>
+<p>Make sure your programmer is <a href="/disassembly/#wiring">attached to the PCB</a>,
+then start OpenOCD.  If you are using a programmer other than the STlink, you
+will need to select the correct interface.</p>
+<pre><code class="sh">sudo openocd -f interface/stlink.cfg -f 'tcl/airsense.cfg'
 </code></pre>
 
 <p>If your device is connected properly, you should see a bunch of output, ending with:</p>
@@ -188,42 +194,44 @@
 <h2 id="dumping-vendor-firmware">Dumping Vendor Firmware</h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This step is mandatory. Each subsequent step requires an original copy of the device firmware
-to be present in the working directory. With an original copy of the firmware, the device can always be
-restored to factory settings. If you lose the original firmware, you risk bricking your device!</p>
+<p>This step is mandatory. Each subsequent step requires an
+original copy of the device firmware to be present in the working
+directory. With an original copy of the firmware, the device can
+always be restored to factory settings. If you lose the original
+firmware, you risk bricking your device!</p>
 </div>
-<p>Type <code>dump</code> into the OpenOCD console.</p>
+<p>Type <code>dump</code> into the OpenOCD console.  It will take several seconds for
+all of the different regions to be copied from the device and deposited
+into the <code>stm32/</code> subdirectory.</p>
 <h2 id="building-alternate-firmware">Building Alternate Firmware</h2>
 <h2 id="flashing">Flashing</h2>
 <p><img alt="Unlocked icon" src="../images/unlocked.png" /></p>
-<p>With the device powered up and the stlink connected to the computer, run <a href="http://openocd.org/">OpenOCD</a>
-to initialize the programmer and fetch the existing firmware (should take about 10 seconds):</p>
-<pre><code>sudo openocd \
-    -f interface/stlink.cfg \
-    -f target/stm32f4x.cfg \
-    -c 'flash read_bank 0 stm32.bin'
+<p>In a third terminal window, patch the extracted firmware in
+<code>stm32/bank0.bin</code> with the <code>patch-airsense</code> script.  This will will
+unlock the vendor modes and configuration bits.</p>
+<pre><code>./patch-airsense stm32/bank0.bin stm32-unlocked.bin
 </code></pre>
 
-<p>Patch this extracted firmware with the script <a href="patch-airsense"><code>patch-airsense</code> script</a>
-that will unlock the vendor modes and configuration bits:</p>
-<pre><code>./patch-airsense stm32.bin stm32-unlocked.bin
+<p>The script might fail if the hashes of your extracted firmware do not
+match the one that it expects (currently <code>SX567-0401</code>). If you have a
+different version, please contact us for how to procede.</p>
+<p>Now reflash the device with the modified firmware by going back to the
+OpenOCD console terminal and running:</p>
+<pre><code class="sh">stm32f2x options_write 0 0x2c
+reset halt
+flash write_image erase stm32-unlocked.bin 0x8000000
+reset run
 </code></pre>
 
-<p>Now reflash the device with the modified firmware:</p>
-<pre><code>sudo openocd \
-    -f interface/stlink.cfg \
-    -f target/stm32f4x.cfg \
-    -c 'stm32f2x options_write 0 0x2c' \
-    -c 'reset halt' \
-    -c 'flash write_image erase stm32-unlocked.bin 0x8000000' \
-    -c 'reset run' \
-</code></pre>
-
+<p>The <code>write_image</code> step takes around 20 seconds and the device should
+reboot afterwards.</p>
 <h2 id="testing">Testing</h2>
 <p><img alt="iVAPS mode unlocked" src="../images/airsense-ivaps.jpg" /></p>
-<p>The device should reboot and if you enter the clinician menu (hold down the <code>Home</code> button while pushing on the knob
-for three seconds), you should be able to select from all of the vendor modes, including iVAPS and ST.
-These modes should allow the CPAP device to immediately be used according to the Mt Sinai BiPAP protocol.</p>
+<p>After the device has been reflashed and rebooted, you can enter the
+clinician menu (hold down the <code>Home</code> button while pushing on the knob
+for three seconds), and you should be able to select from all of the vendor
+modes, including iVAPS and ST.  These modes potentially allow the CPAP device
+to immediately be used according to the Mt Sinai BiPAP protocol.</p>
 <p>The flashing is a one-time operation.  The programmer can be unplugged and moved to another device.</p>
 <h3 id="restoring-the-vendor-firmware">Restoring the vendor firmware</h3>
 <p><img alt="Gears icon" src="../images/gears.png" /></p>
