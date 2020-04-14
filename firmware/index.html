@@ -84,7 +84,7 @@
     <ul class="dropdown-menu">
             
 <li >
-    <a href="../info/datasheets/">Datasheets</a>
+    <a href="../info/hardware/">Airsense S10 Hardware</a>
 </li>
             
 <li >
@@ -236,8 +236,11 @@ to immediately be used according to the Mt Sinai BiPAP protocol.</p>
 <p>The flashing is a one-time operation.  The programmer can be unplugged and moved to another device.</p>
 <h3 id="restoring-the-vendor-firmware">Restoring the vendor firmware</h3>
 <p><img alt="Gears icon" src="../images/gears.png" /></p>
-<p>Restoring the old firmware is possible; there are some RTC variables that need to be adjusted.
-Script to be provided.</p></div>
+<p>In order for the vendor firmware to flash properly, it is necessary
+to restore variables to the device's backup memory in a certain sequence.
+The following OpenOCD command will do that:</p>
+<pre><code class="sh">flash_new stm32.bin
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
