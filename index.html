@@ -221,12 +221,21 @@ nor will it be accepted as a pull request.</p>
 </ul>
 <h1 id="faq">FAQ</h1>
 <h2 id="whats-the-difference-between-the-cpap-and-bipap-machines">What's the difference between the CPAP and BiPAP machines?</h2>
-<p>The Airsense 10 that we have modified is a low cost sleep therapy device that
-provides a <em>Constant</em> air pressure to help with sleep apnea and other disorders.
-The BiPAP machines can produce two levels of pressure, which allows them to
-be used a temporary ventilators.  Adding a function to the existing firmware
-that alternate between pressures allows the CPAP to effectively function
-similar to a BiPAP system.</p>
+<p>The Airsense 10 that we have modified is a low cost sleep therapy device
+that provides a <em>Constant</em> air pressure to help with sleep apnea and
+other disorders.  Adding a homebrew function to the existing firmware
+that alternate between pressures with a configurable delay allows the
+CPAP to effectively function as a Pressure Control Ventilator for sedated
+patients.  The BiPAP machines can also produce two levels of pressure and
+they also have the ability to synchronize with the patient's breathing,
+which allows them to be used a temporary ventilators for non-sedated
+patients.</p>
+<p>Enabling the vendor's BiPAP mode on the CPAP machines appears to work;
+the respiration rate is detected and the backup respiration rate takes
+over if the user stops breathing.  This indicates that there are sufficient
+sensors in the CPAP machine to perform the same functions as the BiPAP.
+Further customization for clincal use is possible by writing
+<a href="info/extensions/">new extensions</a> for the firmware in the machine.</p>
 <h2 id="can-jailbroken-cpap-devices-be-used-to-treat-covid-patients">Can jailbroken CPAP devices be used to treat COVID patients?</h2>
 <p>We want to be very clear here: this modified firmware should <strong>not</strong> be
 flashed on CPAP machines and used to treat COVID patients immediately.
