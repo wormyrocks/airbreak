@@ -8,27 +8,27 @@
         
         
         
-        <link rel="shortcut icon" href="../../favicon.ico">
+        <link rel="shortcut icon" href="../favicon.ico">
         
 <meta property="og:title" content="airbreak: jailbreak your CPAP devices">
 <meta property="og:description" content="Tools to turn your CPAP machine into an emergency ventilator">
 <meta property="og:url" content="https://airbreak.dev/">
 <meta property="og:image" content="https://airbreak.dev/images/sprintf.jpg">
 
-        <title>Pinouts - airbreak</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
+        <title>Trammell Hudson - airbreak</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
-        <link href="../../extra.css" rel="stylesheet">
+        <link href="../extra.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
@@ -47,7 +47,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="../..">airbreak</a>
+                    <a class="navbar-brand" href="..">airbreak</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -59,23 +59,23 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="../..">Airbreak Overview</a>
+    <a href="..">Airbreak Overview</a>
 </li>
                                     
 <li >
-    <a href="../../disassembly/">Disassembly</a>
+    <a href="../disassembly/">Disassembly</a>
 </li>
                                     
 <li >
-    <a href="../../firmware/">Firmware</a>
+    <a href="../firmware/">Firmware</a>
 </li>
                                     
 <li >
-    <a href="../../evaluation/">Evaluation</a>
+    <a href="../evaluation/">Evaluation</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Information <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -84,15 +84,15 @@
     <ul class="dropdown-menu">
             
 <li >
-    <a href="../datasheets/">Datasheets</a>
-</li>
-            
-<li class="active">
-    <a href="./">Pinouts</a>
+    <a href="../info/datasheets/">Datasheets</a>
 </li>
             
 <li >
-    <a href="../testpoints/">Useful Test Points</a>
+    <a href="../info/pinouts/">Pinouts</a>
+</li>
+            
+<li >
+    <a href="../info/testpoints/">Useful Test Points</a>
 </li>
     </ul>
   </li>
@@ -102,11 +102,11 @@
     <ul class="dropdown-menu">
             
 <li >
-    <a href="../tcl/">OpenOCD Scripts</a>
+    <a href="../info/tcl/">OpenOCD Scripts</a>
 </li>
             
 <li >
-    <a href="../windows/">Windows Setup Instructions</a>
+    <a href="../info/windows/">Windows Setup Instructions</a>
 </li>
     </ul>
   </li>
@@ -116,11 +116,11 @@
     <ul class="dropdown-menu">
             
 <li >
-    <a href="../firmware-docs/">Documentation</a>
+    <a href="../info/firmware-docs/">Documentation</a>
 </li>
             
 <li >
-    <a href="../extensions/">Development</a>
+    <a href="../info/extensions/">Development</a>
 </li>
     </ul>
   </li>
@@ -134,16 +134,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li >
-                                <a rel="next" href="../datasheets/">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li >
-                                <a rel="prev" href="../testpoints/">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                             <li>
                                 <a href="https://github.com/osresearch/airbreak/"><i class="fa fa-github"></i> GitHub</a>
                             </li>
@@ -155,11 +145,22 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#trammell-hudson">Trammell Hudson</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-</div>
+<h1 id="trammell-hudson">Trammell Hudson</h1>
+<p>I'm a hardware and firmware security researcher who likes to take things apart.
+Ten years ago I started the <a href="https://magiclantern.fm">Magic Lantern</a> firmware project,
+which allowed any one to write their own extensions for their Canon digital SLR cameras.
+Five years ago I discovered the <a href="https://trmm.net/Thunderstrike">Thunderstrike vulnerability in MacBook firmware</a> and have continued to research other early-boot time security issues.
+More recently I've been developing the open source
+<a href="https://coreboot.org">corebot</a> based
+<a href="http://osresearch.net/">Heads firmware for slightly more secure laptops</a>
+as well as the <a href="https://linuxboot.org/">LinuxBoot open source firmware for servers</a>.</p>
+<p>More of my projects are on <a href="https://trmm.net">trmm.net</a>.
+You can send me encrypted email with the GPG public key <a href="https://lowerlayer.nl/lowerlayer.asc"><code>a4a643fc5a5b326a541a3be111dba768aaaedafb</code></a> or contact me via <a href="https://twitter.com/qrs">@qrs</a>.</p></div>
         </div>
 
         <footer class="col-md-12">
@@ -167,11 +168,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = "../..",
+            var base_url = "..",
                 shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
