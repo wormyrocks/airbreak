@@ -8,7 +8,8 @@
         
         
         
-        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <link rel="shortcut icon" href="../../favicon.ico">
+        
 <meta property="og:title" content="airbreak: jailbreak your CPAP devices">
 <meta property="og:description" content="Tools to turn your CPAP machine into an emergency ventilator">
 <meta property="og:url" content="https://airbreak.dev/">
@@ -162,12 +163,17 @@
 <h1 id="writing-extensions">Writing extensions</h1>
 <p>To be written.  Similar to <a href="https://magiclantern.fm">Magic Lantern</a>, since we use the
 existing vendor firmware as a library with functions at fixed addresses and fit into
-the empty space around the flash image.</p>
+the empty space around the flash image.  The ghidra XML file can be converted into
+the <code>stubs.S</code> that provides labels at the fixed locations.</p>
 <p>Ghidra files.</p>
 <p>Data structures.</p>
 <p>Configuration and variables.</p>
-<p>GUI library.</p>
-<p>GPIO library.</p></div>
+<p>GUI library is based on the closed
+source emwin, although <a href="https://www.nxp.com/docs/en/user-guide/UM03001_emWin5_5.pdf">the reference manual is
+available</a>
+and can be used to derive the headers and structures required to interface
+with the library.</p>
+<p>GPIO library is the STM32 Standard Peripheral Library.</p></div>
         </div>
 
         <footer class="col-md-12">
