@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+<meta property="og:title" content="Airbreak: Jailbreak your CPAP machine">
+<meta property="og:description" content="Tools to turn your CPAP device into an emergency ventilator">
+<meta property="og:url" content="https://airbreak.dev/">
+<meta property="og:image" content="https://airbreak.dev/images/sprintf.jpg">
+
+        <title>A - airbreak</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <link href="../extra.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">airbreak</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guide <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="..">Airbreak Overview</a>
+</li>
+                                    
+<li >
+    <a href="../disassembly/">Disassembly</a>
+</li>
+                                    
+<li >
+    <a href="../firmware/">Firmware</a>
+</li>
+                                    
+<li >
+    <a href="../evaluation/">Evaluation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Information <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Hardware</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../info/datasheets/">Datasheets</a>
+</li>
+            
+<li >
+    <a href="../info/pinouts/">Pinouts</a>
+</li>
+            
+<li >
+    <a href="../info/testpoints/">Useful Test Points</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Software</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../info/tcl/">OpenOCD Scripts</a>
+</li>
+            
+<li >
+    <a href="../info/windows/">Windows Setup Instructions</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Firmware</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../info/firmware-docs/">Documentation</a>
+</li>
+            
+<li >
+    <a href="../info/extensions/">Development</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li>
+                                <a href="https://github.com/osresearch/airbreak/"><i class="fa fa-github"></i> GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#airbreak-jailbreak-your-cpap-devices">Airbreak: jailbreak your CPAP devices</a></li>
+            <li><a href="#disclaimer">Disclaimer</a></li>
+            <li><a href="#major-features">Major features</a></li>
+            <li><a href="#development-features">Development features</a></li>
+        <li class="main "><a href="#faq">FAQ</a></li>
+            <li><a href="#whats-the-difference-between-the-cpap-and-bipap-machines">What's the difference between the CPAP and BiPAP machines?</a></li>
+            <li><a href="#can-jailbroken-cpap-devices-be-used-to-treat-covid-patients">Can jailbroken CPAP devices be used to treat COVID patients?</a></li>
+            <li><a href="#could-hacked-machines-alleviate-the-shortage-of-ventilators">Could hacked machines alleviate the shortage of ventilators?</a></li>
+            <li><a href="#could-homebrew-firmware-go-through-fda-approval">Could homebrew firmware go through FDA approval?</a></li>
+            <li><a href="#so-whats-the-point">So what's the point?</a></li>
+        <li class="main "><a href="#more-details">More details</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p><img alt="CPAP running custom firmware" src="../images/ventilator-animated.gif" /></p>
+<h1 id="airbreak-jailbreak-your-cpap-devices">Airbreak: jailbreak your CPAP devices</h1>
+<p>In light of the COVID-19 crisis and resultant
+shortage of medical equipment, <a href="https://health.mountsinai.org/blog/mount-sinai-turns-hundreds-of-machines-for-sleep-apnea-into-hospital-ventilators-shares-instructions-worldwide/">hospitals have
+developed protocols for using BiPAP-ST (Bi-level Positive
+Airway Pressure with Spontaneous Timing mode) machines as non-invasive
+ventilators</a>,
+the <a href="https://www.fda.gov/media/136702/download">FDA has issued a guidance to accelerate the use of these modified
+BiPAP devices as ventilators</a>,
+and <a href="https://github.com/PubInv/covid19-vent-list">several groups</a> are
+currently working on ventilator designs that involve a converted BiPAP.
+However, CPAP (Constant Positive Airway Pressure) devices are cheaper,
+more widely available, and similar both electrically and mechanically to
+the more specialized BiPAP machines.  Unfortunately, they are lacking
+in some features that the physicians require and, according to their
+manufacturer, CPAP machines "<a href="https://www.resmed.com/en-us/covid-19/"><em>would require significant rework in order
+to function as a ventilator</em></a>".</p>
+<p>What we have done it to "<em>jailbreak</em>" the the Airsense 10 CPAP machine,
+a common, low-cost sleep therapy device intended to treat sleep apnea,
+so that it is possible to run additional tasks on the device. These new
+tasks add the features and adjust the range of parameters that make it
+possible to use the device as a temporary ventilator.  This can help
+ease the shortage until more real ventilators are available.</p>
+<p>Our changes bring the Airsense S10 to near feature parity with BiPAP
+machines from the same manufacturer, boost the maximum pressure output
+available, and provide a starting point to add more advanced emergency
+ventilator functionality.</p>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>While we are consulting with doctors to validate that the modified
+firmware works as intended, the codebase in its current form should be
+considered a <strong>proof of concept</strong> and is <strong>not intended for use in a
+life-support capacity</strong>.  Please see the <a href="#faq">FAQ</a> for more information.</p>
+<p>No IP belonging to device manufacturers is hosted in this repository, nor will it be accepted as a pull request.</p>
+<h2 id="major-features">Major features</h2>
+<ul>
+<li>Adds a custom Pressure Control Ventilator (PCV) mode that oscillates between high and low pressure at a configurable breathing rate (stock firmware supports only a single pressure, with no breath rate control)</li>
+<li>Allows maximum pressure to be increased to 30 cm H<sub>2</sub>O, as required by clinical protocols (stock firmware is 20cm H<sub>2</sub>O)</li>
+<li>Allows smooth rapid pressure change rates (stock firmware changes pressure at less than 1 cm/sec)</li>
+<li>Unlocks all of the vendor modes and tunable configuration parameters, including an iVAPS mode with backup rate</li>
+<li>Provides access to all of the sensors and calculated values (flow, pressure, temperature, tidal volume, minute ventilation, etc)</li>
+<li>Displays real-time graphs on the screen to show an immediate history of sensor data</li>
+</ul>
+<h2 id="development-features">Development features</h2>
+<ul>
+<li>Closed loop air pressure control with backup respiration rates ("VAPS" mode)</li>
+<li>Visual and audible alarms when flow stoppage or leakage rates are detected</li>
+<li>GPIO interface with other systems</li>
+<li>Display statistics in conformance with <a href="https://docs.google.com/spreadsheets/d/17EJ9TN6O1wqP4c-lIn5hbmuMRrto7M_KXHf17zjNSLk/edit#gid=704151435">Rapidly Manufactured Ventilator Standards</a></li>
+</ul>
+<h1 id="faq">FAQ</h1>
+<h2 id="whats-the-difference-between-the-cpap-and-bipap-machines">What's the difference between the CPAP and BiPAP machines?</h2>
+<p>A CPAP machine is a low cost sleep therapy device that functions out-of-the-box to provide a <em>Continuous</em> Positive Airway Pressure to help with sleep apnea and other disorders.  This CPAP mode applies constant pressure to a lung, but it does not ventilate, or let air move in and out of a lung.  </p>
+<p>The BiPAP machines are more capable devices to treat sleep apnea and COPD that provide <em>Bi-level</em> Positive Airway Pressure.  Bi-level pressure <em>triggers</em> on patient breaths, applying higher pressure when the patient tries to breathe in, and a lower pressure when the patient tries to exhale.  This is what's called a <em>support</em> mode, which provides additional pressure support to a patient's natural breathing.  </p>
+<p>These differences apply to the devices as they function <strong>out of the box</strong>. Our work indicates that the actual difference between a low-end CPAP device and a high-end iVAPS device is just a software upgrade.  In fact, there is an iVAPS menu and functionality, that was written by Resmed, hidden in the software on the most common Resmed CPAP device.  When we unlock that mode in software, the CPAP device functions like a much more capable and expensive iVAPS device.  </p>
+<p>This idea, that the difference between CPAP and BiPAP machines is a <em>software</em> change rather than a hardware change, is at the root of our work.  If the common, highly distributed CPAP devices could have a software upgrade that turns them into iVAPS or BiPAP-ST devices capable of ventilating COVID patients, that would be a huge boon to the hospitals and health care workers around the world who are struggling with a lack of ventilators or alternatives to treat the influx of COVID patients.</p>
+<h2 id="can-jailbroken-cpap-devices-be-used-to-treat-covid-patients">Can jailbroken CPAP devices be used to treat COVID patients?</h2>
+<p>We want to be very clear here: this modified firmware should <strong>not</strong> be flashed on CPAP machines and used to treat COVID patients immediately.  The firmware that we've developed is an effective demonstration of the capability, and while it has been <a href="evaluation">reviewed and validated by expert researchers, biomedical engineers, and clinical pulmonologists</a>, it has
+not yet been put through FDA approval.  Additionally, the
+<a href="https://health.mountsinai.org/wp-content/uploads/sites/14/2020/04/NIV-to-Ventilator-Modification-Protocol-v1.02-for-posting.pdf">Mt Sinai's protocols for off-label non-invasive ventilation</a> require additions such as viral filters and monitors before the machines would be ready for clinical use, but those exist in hospital supply chains and could be quickly added by respiratory therapists in hospitals if the machines were available.</p>
+<h2 id="could-hacked-machines-alleviate-the-shortage-of-ventilators">Could hacked machines alleviate the shortage of ventilators?</h2>
+<p>If the manufacturers developed their own firmware updates, or the FDA approves our jailbroken firmware, this could have an extremely large role in bridging the ventilator shortage gap.
+There are millions of unused or underutilized CPAP and BiPAP devices sitting in closets in America, and roughly another 500,000 units in warehouses in the country.  These devices can be used as an alternate ventilator, for low-resource hospitals who are still waiting for the hospital ventilators to arrive.</p>
+<h2 id="could-homebrew-firmware-go-through-fda-approval">Could homebrew firmware go through FDA approval?</h2>
+<p>If there were no other option, our firmware could go through FDA approval, but we believe that the best route for rolling out these upgrades is to work with the manufacturers to use their resources to validate and distribute these upgrades safely and at scale.  There are three main factors at play here:</p>
+<ul>
+<li>
+<p>The first is a regulatory/safety one:  Under the recently-released FDA guidance on hardware and software modification of CPAP and BiPAP devices to treat COVID patients, the manufacturer has a carte blanche to release an updated version of their firmware for their own devices without requiring explicit FDA approval -- they are in the best position to make this upgrade from a technical, expertise, safety and regulatory perspective.</p>
+</li>
+<li>
+<p>The second is a practical one:  There are many different models of CPAP and BiPAP devices, and reverse-engineering is a slow and painful process. We modified the firmware on the most common model of CPAP in America in about a week, but to get lots of ventilators quickly, you'd need a firmware modification for every mode of CPAP. What we've found in our work is that the work needed for the manufacturer to implement these upgrades is pretty minimal -- the manufacturer has access to the source code, to the schematics, and to the engineers who are intimately familiar with physiology and safety standards.  We've found that, in many cases, the bulk of the work has already gone through FDA approval, like the iVAPS menu that is already in the firmware on the ResMed Airsense device.  Even if other manufacturers had not written a line of code for their CPAP models, the simple pressure-control ventilator mode that we were able to implement is very simple to develop, is designed to work on every CPAP device in existence, and would be a very low technology and regulatory barrier for manufacturers who have the right people and resources.</p>
+</li>
+<li>
+<p>The third is related to making these jailbreaks at scale:  We could take in every unused CPAP device in the country, <a href="Installation">unscrew the case and re-flash the firmware</a>.  It's slow and expensive but could be solved with lots and lots of people.  The thing is, of the 8 million CPAPs in the country, almost all 5 million shipped over the last 3 years have a cellular IoT connection that is always on, reporting back usage information to the doctors and the insurance companies.  That cellular connection also has over-the-air upgrade capability that can only be accessed from within the IT infrastructure of the device manufacturers. This is a big deal -- it means that they can selectively upgrade, by serial number, specific units to function as ventilators, without having to open them up -- it can all work over the air.</p>
+</li>
+</ul>
+<h2 id="so-whats-the-point">So what's the point?</h2>
+<p><img alt="Onscreen graphs" src="../images/sprintf.jpg" /></p>
+<p>What our firmware does is show that it is possible to re-program these devices in a way that doctors can use to effectively ventilate COVID patients. We have been able to confirm the functionality of the devices in instrumented patient circuits operated by experts in pulmonological
+measurement. And there are doctors who agree that, if they had an FDA-approved machine that could that can do what these machines are doing, then they could use them to clinically ventilate COVID patients in an ICU.</p>
+<p>We do have a path to get this firmware through FDA, and we would apply for FDA approval under the Emergency Use Authorization if the manufacturers absolutely refused to cooperate, but the safest and best path is for the manufacturers to enable this upgrade on their own.</p>
+<p>Separately from the very pressing COVID issues, this sort of tool allows device owners to write their own <a href="info/extensions">extensions to customize their devices for their needs</a>, similar to what the <a href="https://magiclantern.fm">Magic Lantern</a> firmware does for cameras. Additionally, these tools allow the owners and users to gain a better understand their own therapy by gaining access to the sensors on the device.  They can add features like the on-screen graphs shown above, or integrate external systems through the expansion port.</p>
+<h1 id="more-details">More details</h1>
+<ul>
+<li><a href="evaluation">Clinical evaluation</a></li>
+<li><a href="/disassembly">Disassembly and wiring instructions</a></li>
+<li><a href="/firmware">Firmware flashing guide</a></li>
+<li><a href="info/extensions">Writing extensions</a></li>
+<li><a href="https://github.com/osresearch/airbreak">github.com/osresearch/airbreak</a></li>
+<li><a href="mailto://info@airbreak.dev">info@airbreak.dev</a></li>
+</ul></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

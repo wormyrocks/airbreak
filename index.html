@@ -10,8 +10,8 @@
         
         <link rel="shortcut icon" href="favicon.ico">
         
-<meta property="og:title" content="airbreak: jailbreak your CPAP devices">
-<meta property="og:description" content="Tools to turn your CPAP machine into an emergency ventilator">
+<meta property="og:title" content="Airbreak: Jailbreak your CPAP machine">
+<meta property="og:description" content="Tools to turn your CPAP device into an emergency ventilator">
 <meta property="og:url" content="https://airbreak.dev/">
 <meta property="og:image" content="https://airbreak.dev/images/sprintf.jpg">
 
@@ -209,7 +209,7 @@ nor will it be accepted as a pull request.</p>
 <li>Allows maximum pressure to be increased to 30 cm H<sub>2</sub>O, as required by clinical protocols (stock firmware is limited to 20cm H<sub>2</sub>O).</li>
 <li>Allows smooth rapid pressure change rates for respiration rates up to 30 breaths per minute (stock firmware changes pressure at less than 1 cm/sec).</li>
 <li>Unlocks all of the vendor modes and tunable configuration parameters, including ST and iVAPS modes present in the firmware.</li>
-<li>Provides access to all of the sensors (flow, pressure, temperature, etc).</li>
+<li>Provides access to all of the sensors (flow, pressure, temperature, tidal volume, minute ventilation, etc).</li>
 <li>Displays real-time graphs on the screen to show an immediate history of sensor data.</li>
 </ul>
 <h2 id="development-features">Development features</h2>
@@ -223,23 +223,36 @@ nor will it be accepted as a pull request.</p>
 <h2 id="whats-the-difference-between-the-cpap-and-bipap-machines">What's the difference between the CPAP and BiPAP machines?</h2>
 <p><img alt="Therapy mode menu on an unlocked Airsense 10 CPAP machine" src="images/airsense-modes.jpg" /></p>
 <p>The Airsense 10 that we have modified is a low cost sleep therapy device
-that provides a <em>Constant</em> air pressure to help with sleep apnea and
-other disorders.  Adding a homebrew function to the existing firmware
-that alternate between pressures with a configurable delay allows the
-CPAP to effectively function as a Pressure Control Ventilator (PCV) for sedated
-patients.  The BiPAP machines can also produce two levels of pressure and
-they also have the ability to synchronize with the patient's breathing,
-which allows them to be used a temporary ventilators for non-sedated
-patients.</p>
-<p>However, the CPAP machines have many of the same sensors as the more
-expensive models. And the Airsense 10 CPAP devices include in their
-firmware all of the other modes, such as iVAPS and BiPAP-ST. Setting
-the configuration bits to enable the vendor's BiPAP mode on the CPAP
-machines appears to work; the user's respiration rate is detected and the
-backup respiration rate takes over if they stop breathing.  This indicates
-that the CPAP machines should only require software modifications to perform
-the same functions.  Further customization for clinical use is possible by writing
-<a href="info/extensions/">new extensions</a> for the firmware in the machine.</p>
+that provides a <em>Constant</em> Positive Air Pressure to help with sleep apnea and
+other disorders.  This CPAP mode applies constant pressure to the lungs,
+but it does not ventilate, or let air move in and out of the lungs.</p>
+<p>The BiPAP machines are more capable devices to treat sleep apnea
+and COPD that provide <em>Bi-level</em> Positive Airway Pressure.  Bi-level
+pressure <em>triggers</em> on patient breaths, applying higher pressure when
+the patient tries to breathe in, and a lower pressure when the patient
+tries to exhale.  This is what's called a <em>support</em> mode, which provides
+additional pressure support to a patient's natural breathing.</p>
+<p>These differences apply to the devices as they function <strong>out of the box</strong>.
+Our work indicates that the actual difference between a low-end
+CPAP device and a high-end iVAPS device is just a <strong>software upgrade</strong>.
+The CPAP machines have many of the same sensors as the more
+expensive models, and the Airsense 10 CPAP devices include in their
+firmware all of the other modes, such as iVAPS and BiPAP-ST.
+When we unlock that mode in software, the CPAP device functions like a
+much more capable and expensive iVAPS device.</p>
+<p>This idea, that the difference between CPAP and BiPAP machines is a
+<em>software</em> change rather than a <em>hardware</em> change, is at the root of
+our work.  If the common, highly distributed CPAP devices could have a
+software upgrade that turns them into iVAPS or BiPAP-ST devices capable
+of ventilating COVID patients, that would be a huge boon to the hospitals
+and health care workers around the world who are struggling with a lack
+of ventilators or alternatives to treat the influx of COVID patients.</p>
+<p>Adding a homebrew function to the existing firmware that alternate
+between pressures with a configurable delay allows the CPAP to effectively
+function as a Pressure Control Ventilator (PCV) for sedated patients.
+Enabling the vendor provided iVAPS mode,
+along with <a href="info/extensions">further customization and new extensions</a>,
+should make the devices even more flexible and suitable for clinical use.</p>
 <h2 id="can-jailbroken-cpap-devices-be-used-to-treat-covid-patients">Can jailbroken CPAP devices be used to treat COVID patients?</h2>
 <p>We want to be very clear here: this modified firmware should <strong>not</strong> be
 flashed on CPAP machines and used to treat COVID patients immediately.
@@ -260,6 +273,7 @@ the country.  These devices can be used as an alternate ventilator, for
 low-resource hospitals who are still waiting for the hospital ventilators
 to arrive.</p>
 <h2 id="could-homebrew-firmware-go-through-fda-approval">Could homebrew firmware go through FDA approval?</h2>
+<p><img alt="Airsense 10 CPAP machine with iVAPS configuration menu" src="images/airsense-ivaps.jpg" /></p>
 <p>If there were no other option, our firmware could go through FDA approval,
 but we believe that the best route for rolling out these upgrades is
 to work with the manufacturers to use their resources to validate and
@@ -286,7 +300,7 @@ the manufacturer has access to the source code, to the schematics,
 and to the engineers who are intimately familiar with physiology and
 safety standards.  We've found that, in many cases, the bulk of the
 work has already gone through FDA approval, like the iVAPS menu that
-is in the firmware on the ResMed Airsense device.  Even if other
+is in the firmware on the ResMed Airsense device show above.  Even if other
 manufacturers had not written a line of code for their CPAP models, the
 simple pressure-control ventilator mode that we were able to implement
 is very simple to develop, is designed to work on every CPAP device in
