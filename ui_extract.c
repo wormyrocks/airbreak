@@ -7,6 +7,8 @@
 #define STRING_POINTER_TABLE_START 0x1fad0
 #define STRING_LOCALIZED_TABLE_START 0x4260
 
+#define LOCALE 1
+
 #define STRING_POINTER_TABLE_MAXLEN 5000
 
 #define STRUCT_SIZE 28
@@ -75,29 +77,31 @@ int read_string_table(FILE *f)
 	printf("done.\n");
 	return 0;
 }
-
-// typedef struct local_string_t
-// {
-// 	unsigned short len;
-// 	unsigned int localized_string_id;
-// } local_string;
-
-// local_string local_string_table[10];
-// int read_localized_string_table(FILE *f)
-// {
-// 	fseek(f, STRING_LOCALIZED_TABLE_START, 0);
-// 	if (!fread(local_string_table, sizeof(local_string), 10, f)) return 1;
-// 	for (int i = 0; i < 10; ++i)
-// 	{
-// 		printf("%x\n", local_string_table[i].len);
-// 	}
-// 	return 0;
-// }
-
-char *getstring(int i)
+/*
+typedef struct local_string_t
 {
-	assert(i < pointer_table_length);
-	return &string_data[pointer_table[i]];
+	unsigned short len;
+	unsigned int localized_string_id;
+} local_string;
+
+local_string local_string_table[10];
+int read_localized_string_table(FILE *f)
+{
+	fseek(f, STRING_LOCALIZED_TABLE_START, 0);
+	if (!fread(local_string_table, sizeof(local_string), 10, f)) return 1;
+	for (int i = 0; i < 10; ++i)
+	{
+		printf("%x %04x\n", local_string_table[i].len, local_string_table[i].localized_string_id);
+	}
+	return 0;
+}
+*/
+char *getstring(unsigned short i)
+{
+	if (i > 124) i+=10;
+	unsigned short raw_id = 7 * i + LOCALE;
+	assert(raw_id < pointer_table_length);
+	return &string_data[pointer_table[raw_id]];
 }
 
 void tobits(char val)
@@ -194,6 +198,7 @@ int pprint_therapy_value(therapy_ui_value *t)
 	printf("(%.2f-%.2f) ", (float)t->lolimit / (float)t->scale, (float)t->hilimit / (float)t->scale);
 	printf("(+/- %.2f) ", (float)t->increment / (float)t->scale);
 	print_unit(t->unit);
+	if (t->str_ind != 0xde) printf(" %s", getstring(t->str_ind));
 	// printf("%04x%04x%04x%04x%04x%04x", t->idk, t->idk2, t->idk3, t->idk4, t->idk5, t->idk6);
 	return 0;
 }
@@ -202,7 +207,7 @@ int main(int argc, char **argv)
 {
 	FILE *f = fopen(argv[1], "rb");
 	int ret = 0;
-	if (!read_string_table(f)) // && !read_localized_string_table(f))
+	if (!read_string_table(f))// && !read_localized_string_table(f))
 	{
 		fseek(f, UI_TABLE_START, 0);
 		therapy_ui_value tv = {0};
@@ -213,7 +218,7 @@ int main(int argc, char **argv)
 			fread(&tv, sizeof(tv), 1, f);
 			fseek(f, STRUCT_SIZE - sizeof(tv), SEEK_CUR);
 			// if (tv.unit != 0xde) continue;
-			// if (tv.str_ind == 0xde) continue;
+//if (tv.str_ind == 0xde) continue;
 			printf("%03d ", i - 1);
 			pprint_therapy_value(&tv);
 			printf("\n");
