@@ -3,11 +3,18 @@
 #include <string.h>
 #include <stdio.h>
 
+#define AIRSTART
+#ifdef AIRSTART
+#define UI_TABLE_START 0x4efc
+#define STRING_POINTER_TABLE_START 0x1fd5c
+#define STRING_LOCALIZED_TABLE_START 0x4260
+#else
 #define UI_TABLE_START 0x4ef4
 #define STRING_POINTER_TABLE_START 0x1fad0
 #define STRING_LOCALIZED_TABLE_START 0x4260
+#endif
 
-#define LOCALE 1
+#define LOCALE 0
 
 #define STRING_POINTER_TABLE_MAXLEN 5000
 
